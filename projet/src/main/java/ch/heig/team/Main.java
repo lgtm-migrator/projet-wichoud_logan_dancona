@@ -17,12 +17,12 @@ import picocli.CommandLine.*;
         }
 )
 
-public class App implements Runnable {
+public class Main implements Runnable {
 
     @Parameters(index = "0", description = "the mode you want to choose. ")
     @Option(names = {"-n", "--new"}, description = "new")
     public static void main(String[] args) {
-        new CommandLine(new App()).execute(args);
+        new CommandLine(new Main()).execute(args);
     }
 
     @Override
