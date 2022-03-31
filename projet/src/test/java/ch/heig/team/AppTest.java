@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * Unit test for simple App.
  */
@@ -28,7 +31,7 @@ public class AppTest
                 + "#### heading h4\n"
                 + "---";
 
-        String htmlValue = MarkdownToHTMLParser.convertMarkdownToHTML(markdownValue);
+        String htmlValue = MarkdownToHTMLParser.convert_markdown_to_HTML(markdownValue);
 
     assertEquals(
         htmlValue,
@@ -53,7 +56,7 @@ public class AppTest
                 + "\n"
                 + "La fin de mon article\n";
 
-        String htmlValue = MarkdownToHTMLParser.convertMarkdownToHTML(markdownValue);
+        String htmlValue = MarkdownToHTMLParser.convert_markdown_to_HTML(markdownValue);
 
     assertEquals(
         htmlValue,
@@ -72,7 +75,7 @@ public class AppTest
     {
         String markdownValue = "![Une image](./image.png)";
 
-        String htmlValue = MarkdownToHTMLParser.convertMarkdownToHTML(markdownValue);
+        String htmlValue = MarkdownToHTMLParser.convert_markdown_to_HTML(markdownValue);
 
     assertEquals(htmlValue, "<p><img src=\"./image.png\" alt=\"Une image\" /></p>\n");
 
@@ -89,7 +92,7 @@ public class AppTest
                 + "- Un autre élément\n"
                 + "- Encore un autre élément\n";
 
-        String htmlValue = MarkdownToHTMLParser.convertMarkdownToHTML(markdownValue);
+        String htmlValue = MarkdownToHTMLParser.convert_markdown_to_HTML(markdownValue);
 
     assertEquals(
         htmlValue,
@@ -112,7 +115,7 @@ public class AppTest
                 + "2. Deuxième élément\n"
                 + "3. Troisième élément\n";
 
-        String htmlValue = MarkdownToHTMLParser.convertMarkdownToHTML(markdownValue);
+        String htmlValue = MarkdownToHTMLParser.convert_markdown_to_HTML(markdownValue);
 
     assertEquals(
         htmlValue,
@@ -126,5 +129,16 @@ public class AppTest
         System.out.println(markdownValue);
         System.out.println("HTML String:");
         System.out.println(htmlValue);
+    }
+
+    @Test
+    public void shouldReadFromInputStream() throws IOException {
+        assertEquals(
+        "# Mon premier article\n"
+            + "## Mon sous-titre\n"
+            + "Le contenu de mon article.\n"
+            + "![Une image](./image.png)\n",
+        MarkdownToHTMLParser.read_from_input_stream(
+                AppTest.class.getResourceAsStream("/test/fichier_donnees.md")));
     }
 }
