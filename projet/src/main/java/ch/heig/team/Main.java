@@ -8,7 +8,6 @@ import picocli.CommandLine.*;
         name = "name",
         description = "",
         mixinStandardHelpOptions = true,
-        version = "0.1",
         subcommands = {
                 newCommand.class,
                 cleanCommand.class,

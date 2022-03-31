@@ -6,8 +6,7 @@ import picocli.CommandLine.Command;
 @Command(
         name = "build",
         description = "launch build command",
-        mixinStandardHelpOptions = true,
-        version = "0.1"
+        mixinStandardHelpOptions = true
 )
 
 public class buildCommand implements Runnable {

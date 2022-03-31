@@ -6,8 +6,7 @@ import picocli.CommandLine.Command;
 @Command(
         name = "serve",
         description = "launch serve command",
-        mixinStandardHelpOptions = true,
-        version = "0.1"
+        mixinStandardHelpOptions = true
 )
 
 public class serveCommand implements Runnable {

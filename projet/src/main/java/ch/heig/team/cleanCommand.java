@@ -6,8 +6,7 @@ import picocli.CommandLine.Command;
 @Command(
         name = "clean",
         description = "launch clean command",
-        mixinStandardHelpOptions = true,
-        version = "0.1"
+        mixinStandardHelpOptions = true
 )
 
 public class cleanCommand implements Runnable {

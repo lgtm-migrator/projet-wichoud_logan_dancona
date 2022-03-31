@@ -7,8 +7,7 @@ import picocli.CommandLine.*;
 @Command(
         name = "new",
         description = "launch new command",
-        mixinStandardHelpOptions = true,
-        version = "0.1"
+        mixinStandardHelpOptions = true
 )
 
 public class newCommand implements Runnable {
