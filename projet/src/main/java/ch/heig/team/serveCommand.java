@@ -6,17 +6,18 @@ import picocli.CommandLine.Command;
 @Command(
         name = "serve",
         description = "launch serve command",
-        mixinStandardHelpOptions = true
+        mixinStandardHelpOptions = true,
+        aliases = {"-s"}
 )
 
 public class serveCommand implements Runnable {
 
-    public static void main(String[] args) {
-        new CommandLine(new serveCommand()).execute(args);
-    }
+   public static void main(String[] args) {
+      new CommandLine(new serveCommand()).execute(args);
+   }
 
-    @Override
-    public void run() {
-        System.out.println("serve command Launched");
-    }
+   @Override
+   public void run() {
+      System.out.println("serve command Launched");
+   }
 }
