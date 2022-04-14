@@ -15,13 +15,13 @@ import java.nio.file.Paths;
         aliases = {"-c"}
 )
 
-public class cleanCommand implements Runnable {
+public class CleanCommand implements Runnable {
 
    @CommandLine.Parameters(paramLabel = "PATH", description = "The site to clean")
    public Path path;
 
    public static void main(String[] args) {
-      new CommandLine(new cleanCommand()).execute(args);
+      new CommandLine(new CleanCommand()).execute(args);
    }
 
    @Override

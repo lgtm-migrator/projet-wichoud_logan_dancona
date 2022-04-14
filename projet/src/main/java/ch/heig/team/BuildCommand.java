@@ -10,10 +10,10 @@ import picocli.CommandLine.Command;
         aliases = {"-b"}
 )
 
-public class buildCommand implements Runnable {
+public class BuildCommand implements Runnable {
 
    public static void main(String[] args) {
-      new CommandLine(new buildCommand()).execute(args);
+      new CommandLine(new BuildCommand()).execute(args);
    }
 
    @Override

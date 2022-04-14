@@ -10,10 +10,10 @@ import picocli.CommandLine.Command;
         aliases = {"-s"}
 )
 
-public class serveCommand implements Runnable {
+public class ServeCommand implements Runnable {
 
    public static void main(String[] args) {
-      new CommandLine(new serveCommand()).execute(args);
+      new CommandLine(new ServeCommand()).execute(args);
    }
 
    @Override

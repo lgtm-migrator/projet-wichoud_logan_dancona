@@ -10,10 +10,10 @@ import picocli.CommandLine.HelpCommand;
         description = "",
         mixinStandardHelpOptions = true,
         subcommands = {
-                cleanCommand.class,
-                buildCommand.class,
-                serveCommand.class,
-                versionCommand.class,
+                CleanCommand.class,
+                BuildCommand.class,
+                ServeCommand.class,
+                VersionCommand.class,
                 HelpCommand.class
         }
 )
