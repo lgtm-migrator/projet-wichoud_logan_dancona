@@ -2,32 +2,35 @@ package ch.heig.team;
 
 
 import picocli.CommandLine;
-import picocli.CommandLine.*;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.HelpCommand;
 
 @Command(
         name = "name",
         description = "",
         mixinStandardHelpOptions = true,
-        version = "0.1",
         subcommands = {
-                newCommand.class,
-                cleanCommand.class,
-                buildCommand.class,
-                serveCommand.class
+                CleanCommand.class,
+                BuildCommand.class,
+                ServeCommand.class,
+                VersionCommand.class,
+                HelpCommand.class
         }
 )
 
 public class Main implements Runnable {
+   @CommandLine.Option(names = {"-v", "--version"}, description = "print the version of static generator")
 
-    @Parameters(index = "0", description = "the mode you want to choose. ")
-    @Option(names = {"-n", "--new"}, description = "new")
-    public static void main(String[] args) {
-        new CommandLine(new Main()).execute(args);
-    }
+   boolean versionRequested;
 
-    @Override
-    public void run() {
-        CommandLine.usage(this, System.out);
-        System.out.println("hello");
-    }
+   public static void main(String[] args) {
+      int exitCode = new CommandLine(new Main()).execute(args);
+      if (exitCode != 0) System.exit(exitCode);
+   }
+
+   @Override
+   public void run() {
+      System.out.println("Static website generator");
+      //CommandLine.usage(this, System.out);
+   }
 }

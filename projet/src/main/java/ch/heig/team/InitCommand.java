@@ -7,14 +7,13 @@ import picocli.CommandLine.*;
 @Command(
         name = "new",
         description = "launch new command",
-        mixinStandardHelpOptions = true,
-        version = "0.1"
+        mixinStandardHelpOptions = true
 )
 
-public class newCommand implements Runnable {
+public class InitCommand implements Runnable {
 
     public static void main(String[] args) {
-        new CommandLine(new newCommand()).execute(args);
+        new CommandLine(new InitCommand()).execute(args);
     }
 
     @Override
