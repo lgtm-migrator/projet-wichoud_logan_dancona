@@ -11,7 +11,8 @@ import java.io.InputStreamReader;
 
 public class MarkdownToHTMLParser {
 
-    public static String read_from_input_stream(InputStream inputStream) throws IOException {
+    public static String convert_file_markdown_to_HTML(InputStream inputStream) throws IOException {
+
         StringBuilder resultStringBuilder = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
@@ -22,9 +23,7 @@ public class MarkdownToHTMLParser {
         return resultStringBuilder.toString();
     }
 
-    // TODO : écrire direct dans un fichier de sortie html !
-
-    public static String convertMarkdownToHTML(String markdown) {
+    public static String convert_string_markdown_to_HTML(String markdown) {
         Parser parser = Parser.builder().build();
         Node document = parser.parse(markdown);
         HtmlRenderer htmlRenderer = HtmlRenderer.builder().build();
