@@ -17,31 +17,41 @@ import org.yaml.snakeyaml.Yaml;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
+/**
+ * Commande permettant de construire le site statique
+ */
 @Command(name = "build", description = "Build a static site")
 public class Build implements Callable<Integer> {
 
+  /** Le fichier de configuration du site statique **/
   private Yaml yaml = new Yaml();
 
+  /** Le chemin des fichiers contenant le site à construire **/
   @Parameters(paramLabel = "SITE", description = "The site to build")
   public Path site;
 
+  /**
+   * Appel de la commande
+   * @return 0 si tout s'est bien passé
+   * @throws IOException
+   */
   @Override
   public Integer call() throws IOException {
-    // Parse the configuration
+    // Parsing de la configuration
     Map<String, Object> config = yaml.load(Files.readString(site.resolve("config.yaml")));
 
-    // Initialize the template engine
+    // Initialisation du template
     TemplateLoader loader = new FileTemplateLoader(site.resolve("template").toFile());
     Handlebars handlebars = new Handlebars(loader);
     handlebars.registerHelper("md", new MarkdownHelper());
     Template template = handlebars.compile("layout");
 
-    // Walk the site directory
+    // Parcours du répertoire du site
     Files.walk(site)
         .filter(file -> file.toString().endsWith(".md"))
         .forEach(source -> {
           try {
-            // Split metadata and content (---)
+            // Séparation des méta-données et du contenu (---)
             String[] array = Files.readString(source).split("---");
             if (array.length != 2) {
               throw new RuntimeException("The page is malformed");
@@ -49,7 +59,7 @@ public class Build implements Callable<Integer> {
             Map<String, Object> page = yaml.load(array[0]);
             String content = array[1];
 
-            // Inject the variables in the template (site, page, content)
+            // Injection des variables dans le template (site, page, contenu)
             Context context = Context.newBuilder(new Object())
                 .combine("site", config)
                 .combine("page", page)
@@ -57,10 +67,10 @@ public class Build implements Callable<Integer> {
                 .resolver(MapValueResolver.INSTANCE, JavaBeanValueResolver.INSTANCE)
                 .build();
 
-            // Render the webpage
+            // Rendu de la page web
             String html = template.apply(context);
 
-            // Persist the webpage
+            // Persistance de la page web
             Path target = site.resolve("build")
                 .resolve(site.relativize(source).toString().replace(".md", ".html"));
             Files.createDirectories(target.getParent());

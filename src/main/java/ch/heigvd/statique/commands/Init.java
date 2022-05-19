@@ -14,17 +14,27 @@ import java.util.concurrent.Callable;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
+/**
+ * Commande permettant d'initialiser le répertoire du site statique
+ */
 @Command(name = "init", description = "Initialize a static site directory")
 public class Init implements Callable<Integer> {
 
+  /** Le chemin des fichiers contenant le site à initialiser **/
   @Parameters(paramLabel = "SITE", description = "The site to initialize")
   public Path site;
 
+  /**
+   * Appel de la commande
+   * @return 0 si tout s'est bien passé
+   * @throws URISyntaxException en cas d'erreur de syntaxe
+   * @throws IOException en cas d'erreur dans les entrées/sorties
+   */
   @Override
   public Integer call() throws URISyntaxException, IOException {
     URI uri = this.getClass().getResource("/init").toURI();
 
-    // Initialize a zip file system when the template is stored in a jar file
+    // Initialise un système de fichier zip quand le template est stocké dans un fichier jar
     if (uri.getScheme().equals("jar")) {
       Map<String, String> env = new HashMap<>();
       env.put("create", "true");
@@ -35,9 +45,9 @@ public class Init implements Callable<Integer> {
     Files.walk(template).forEach(source -> {
       try {
         if (Files.isRegularFile(source)) {
-          // The FileSystem (file or jar) is inferred by the path.
-          // As we copy files from the jar to the filesystem,
-          // the toString method is called to prevent a wrong inference.
+          // Le système de fichier (fichier ou jar) est déduit du path.
+          // Comme on copie des fichiers depuis le jar au système de fichiers,
+          // la méthode toString est appelée pour éviter une mauvaise déduction
           Path target = site.resolve(template.relativize(source).toString());
           Files.createDirectories(target.getParent());
           Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
