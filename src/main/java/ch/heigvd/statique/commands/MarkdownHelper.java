@@ -18,7 +18,7 @@ public class MarkdownHelper implements Helper<String> {
   private HtmlRenderer renderer = HtmlRenderer.builder().build();
 
   /**
-   * Applique le parsing sur une chaîne de caractères en markdown et rend le fichier html ainsi générée
+   * Applique le parsing sur une chaîne de caractères en markdown et rend le fichier html ainsi généré
    * @param markdown la chaîne de caractères à parser
    * @param options les éventuelles options de parsing
    * @return le fichier html généré par la chaîne de caractères

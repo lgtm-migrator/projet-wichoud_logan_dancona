@@ -13,7 +13,7 @@ import picocli.CommandLine.IVersionProvider;
 import picocli.CommandLine.Option;
 
 /**
- * Implémentation des commandes situées dans le package commands
+ * Classe principale qui regroupe les différentes commandes pour gérer le site statique
  */
 @Command(
     name = "statique",
