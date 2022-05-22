@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Un générateur de site statique est un outil permettant de convertir un fichier markdown directement au format HTML grâce à sa structure.
+Un générateur de site statique est un outil permettant de générer automatiquement un site web à partir de fichier de configuration. Le générateur prend comme source un fichier markdown contenant le contenu du site web et/ou un fichier yaml contenant la configuration du site
 
 ## Installation
 
@@ -36,7 +36,6 @@ correspondant au contenu de chaque page du site statique.
 
 Si l'option --watch est spécifiée, le site sera recompilé lorsqu'un changement est détecté sur le disque.
 
-
 ### Nettoyer un site statique
 
 `statique clean <nom>`
@@ -51,8 +50,38 @@ Cette commande permet de servir le site web <nom> dans un naviguateur.
 
 Si l'option --watch est spécifiée, le site sera actualisé lorsqu'un changement est détecté sur le disque.
 
-## Fonctionnalités
+## Utilisation
 
-### Moteur de template
+### Contenu du site
+
+Le contenu du site peut être intégré dans un fichier markdown (.md). Voici les fonctionnalités supportées
+
+#### Titre
+
+`#Mon titre` => permet de définir un titre. (Ajouter des dièses correspond à faire un sous-titre de niveau inférieur)
+
+#### Image
+
+`![légende](uri)` => génére une image
+
+#### Liste
+
+    - item 1
+    - item 2
+
+Va créer une liste à puce.
+
+#### Paragraphe
+
+Il suffit d'ajouter un retour à la ligne dans le texte pour générer un paragraphe
+
+#### Moteur de template
 
 Grâce au moteur de template, on peut intégrer des bouts de code grâce à la syntaxe `{% bout_de_code.html}` ou des informations de configuration de la manière suivante: `{{site.titre}}`
+
+### Configuration du site
+
+Grâce au fichier yaml on peut donner les informations générales du site grâce à la syntaxe suivante:
+
+    clé1: valeur
+    clé2: valeur
