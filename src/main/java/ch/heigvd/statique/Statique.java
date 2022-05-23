@@ -12,6 +12,9 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.IVersionProvider;
 import picocli.CommandLine.Option;
 
+/**
+ * Classe principale qui regroupe les différentes commandes pour gérer le site statique
+ */
 @Command(
     name = "statique",
     description = "A brand new static site generator.",
@@ -19,9 +22,14 @@ import picocli.CommandLine.Option;
     versionProvider = Statique.PropertiesVersionProvider.class)
 public class Statique implements Callable<Integer> {
 
+  /** Spécifie si la version est requise dans la commande **/
   @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version info and exit")
   boolean versionRequested;
 
+  /**
+   * Programme principal qui génère le site statique
+   * @param args les arguments passés en ligne de commande
+   */
   public static void main(String... args) {
     int exitCode = new CommandLine(new Statique()).execute(args);
     if (exitCode != 0) {
@@ -29,6 +37,10 @@ public class Statique implements Callable<Integer> {
     }
   }
 
+  /**
+   * Appel de la commande désirée
+   * @return 0 si tout s'est bien passé
+   */
   @Override
   public Integer call() {
     CommandLine.usage(this, System.out);
@@ -37,6 +49,11 @@ public class Statique implements Callable<Integer> {
 
   static class PropertiesVersionProvider implements IVersionProvider {
 
+    /**
+     * Permet d'obtenir la version actuelle de l'application
+     * @return la version de l'application
+     * @throws Exception
+     */
     public String[] getVersion() throws Exception {
       URL url = getClass().getResource("/version.txt");
       if (url == null) {

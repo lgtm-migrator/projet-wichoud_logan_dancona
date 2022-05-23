@@ -8,12 +8,20 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
+/**
+ * Commande qui permet de servir le site web
+ */
 @Command(name = "serve", description = "Serve a static site")
 public class Serve implements Callable<Integer> {
 
+  /** Le chemin des fichiers contenant le site à servir **/
   @Parameters(paramLabel = "SITE", description = "The site to serve")
   public Path site;
 
+  /**
+   * Appel de la commande
+   * @return 0 si tout s'est bien passé
+   */
   @Override
   public Integer call() {
     // Build the site
