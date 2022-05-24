@@ -1,3 +1,4 @@
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/dil-classroom/projet-dil-diep_jean_rodr_stocc.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/dil-classroom/projet-wichoud_logan_dancona/alerts/) [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/dil-classroom/projet-dil-diep_jean_rodr_stocc.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/dil-classroom/projet-wichoud_logan_dancona/context:java)
 # Statique
 
 Statique is a brand new static site generator.
