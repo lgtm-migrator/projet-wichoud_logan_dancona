@@ -51,11 +51,10 @@ public class BuildTest {
         assertEquals(buildExitCode, 0);
         Path toCheck = site.resolve("build/index.html");
         assertTrue(Files.readString(toCheck).contains("<title>Mon site internet | Home page </title>"));
-        assertTrue(Files.readString(toCheck).contains("""
-                <ul>
-                  <li>lien 1</li>
-                  <li>lien 2</li>
-                </ul>"""));
+        assertTrue(Files.readString(toCheck).contains("<ul>\n" +
+                "  <li>lien 1</li>\n" +
+                "  <li>lien 2</li>\n" +
+                "</ul>"));
         assertTrue(Files.readString(toCheck).contains("<h1>Titre 1</h1>"));
         assertTrue(Files.readString(toCheck).contains("<h2>Titre 2</h2>"));
         assertTrue(Files.readString(toCheck).contains("<p>paragraphe.</p>"));
