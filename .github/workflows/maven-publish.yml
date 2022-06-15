@@ -29,6 +29,10 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Copy package
+      run: |
+          cp target/statique.zip .
+          mv statique.zip statique-${{ github.ref }}.zip
     - name: Create release
       uses: softprops/action-gh-release@v1
       with:
