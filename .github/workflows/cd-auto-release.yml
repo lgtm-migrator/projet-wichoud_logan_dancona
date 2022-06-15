@@ -32,9 +32,8 @@ jobs:
     - name: Copy package
       run: |
           pwd
-          ls -la
-          cp target/statique.zip .
-          mv statique.zip statique-${{ github.ref }}.zip
+          ls statique/ -la
+          cp target/* .
     - name: Create release
       uses: softprops/action-gh-release@v1
       with:
