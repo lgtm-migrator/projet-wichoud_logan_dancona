@@ -4,18 +4,15 @@
 name: Latest Release
 
 on:
-  release:
-    types: [created]
   push:
     tags:
-      - "release"
+      - "v*.*.*"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
+      contents: write
 
     steps:
     - uses: actions/checkout@v3
@@ -29,19 +26,14 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Copy package
-      run: |
-          pwd
-          ls statique/ -la
-          cp target/* .
     - name: Create release
       uses: softprops/action-gh-release@v1
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
         release_name: Release $${{ github.ref }}
         files: | 
-          *.zip 
-          *.jar
+          target/statique.zip
       
   
         
