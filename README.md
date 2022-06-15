@@ -1,5 +1,6 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/dil-classroom/projet-wichoud_logan_dancona.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/dil-classroom/projet-wichoud_logan_dancona/alerts/)
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/dil-classroom/projet-wichoud_logan_dancona.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/dil-classroom/projet-wichoud_logan_dancona/context:java)
+[![Latest Release](https://github.com/dil-classroom/projet-wichoud_logan_dancona/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/dil-classroom/projet-wichoud_logan_dancona/actions/workflows/maven-publish.yml)
 
 # Statique
 
