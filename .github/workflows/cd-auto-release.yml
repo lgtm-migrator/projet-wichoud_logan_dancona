@@ -31,6 +31,8 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Copy package
       run: |
+          pwd
+          ls -la
           cp target/statique.zip .
           mv statique.zip statique-${{ github.ref }}.zip
     - name: Create release
